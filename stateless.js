@@ -15,7 +15,10 @@
    * @param {Function} handler
    */
   var off = function(handler) {
-    handlers.splice(handlers.indexOf(handler), 1);
+    var idx = handlers.indexOf(handler);
+    if (idx !== -1) {
+      handlers.splice(idx, 1);
+    }
   }
 
   /**

@@ -86,6 +86,14 @@ describe('Stateless#off', function() {
     });
     Stateless.push('ghi');
   });
+
+  it('does nothing if the handler is not found', function(done) {
+    Stateless.onChange(function() {
+      done();
+    });
+    Stateless.off(undefined);
+    Stateless.push('bas');
+  });
 });
 
 
