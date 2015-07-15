@@ -111,3 +111,22 @@ describe('Stateless#clear', function() {
     Stateless.push('jkl');
   });
 });
+
+
+describe('Stateless#replace', function() {
+  it("doesn't modify the history", function(done) {
+    Stateless.onChange(function() {
+      assert(window.history.length === prevLength);
+      done();
+    });
+    var prevLength = window.history.length;
+    Stateless.replace('chr1');
+  });
+  it('replaces the hash fragment', function(done) {
+    Stateless.onChange(function(frag) {
+      assert(frag === 'chr2')
+      done();
+    });
+    Stateless.replace('chr2');
+  });
+});

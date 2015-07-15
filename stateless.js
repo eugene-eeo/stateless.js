@@ -63,6 +63,17 @@
   };
 
   /**
+   * Replaces the current hash with the given state.
+   * Does not push another entry into the browser
+   * history.
+   *
+   * @param {String} state
+   */
+  var replace = function(state) {
+    window.location.replace('#' + state);
+  }
+
+  /**
    * Register a Stateless handler. Handlers will
    * be passed the hash fragment after the hash
    * character.
@@ -87,6 +98,7 @@
     push: push,
     pull: pull,
     skip: skip,
+    replace: replace,
     onChange: onChange,
     clear: clear,
   };
