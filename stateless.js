@@ -9,6 +9,16 @@
   };
 
   /**
+   * Removes the given handler from the registered
+   * handlers.
+   *
+   * @param {Function} handler
+   */
+  var off = function(handler) {
+    handlers.splice(handlers.indexOf(handler), 1);
+  }
+
+  /**
    * Clears the array of registered handlers.
    */
   var clear = function() {
@@ -70,6 +80,7 @@
   });
 
   global.Stateless = {
+    off: off,
     push: push,
     pull: pull,
     skip: skip,

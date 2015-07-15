@@ -87,3 +87,19 @@ describe('Stateless.skip', function() {
     Stateless.push('change3');
   });
 });
+
+
+describe('Stateless.off', function() {
+  it('removes the handler', function(done) {
+    var stack = [];
+    var handler = function() {
+      stack.push(1);
+    };
+    Stateless.onChange(handler);
+    Stateless.onChange(function() {
+      expect(stack).toEqual([]);
+      done();
+    });
+    Stateless.push('radical');
+  });
+});
