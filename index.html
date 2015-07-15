@@ -1,72 +1,80 @@
-<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Stateless.js by eugene-eeo</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Stateless.js</h1>
-        <p>simpler pushstate</p>
-
-        <p class="view"><a href="https://github.com/eugene-eeo/stateless.js">View the Project on GitHub <small>eugene-eeo/stateless.js</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/eugene-eeo/stateless.js/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/eugene-eeo/stateless.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/eugene-eeo/stateless.js">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a id="statelessjs" class="anchor" href="#statelessjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stateless.js</h1>
-
-<p><img src="https://raw.githubusercontent.com/eugene-eeo/stateless.js/master/media/small.png" hspace="10" vspace="6" align="left"></p>
-
-<p>Simple, cross-browser <code>pushState</code> via changing the hash
-fragment. Mainly meant for <del>freeloading</del> serverless web
-applications or applications which need to store some state
-in the URL, and provides some nice conveniences like:</p>
-
-<ul>
-<li>Preventing repeated processing of identical hashes- if you
-push the same hash twice it will not be processed twice. This
-is useful for example when you have some expensive
-calculations.</li>
-<li>Ability to mark hashes as "processed"- they will still be
-pushed to the browser's history stack but they will not be
-processed by any Stateless handlers.</li>
-</ul>
-
-<p>The recommended pattern is:</p>
-
-<div class="highlight highlight-js"><pre>Stateless.<span class="pl-c1">onChange</span>(<span class="pl-k">function</span>(<span class="pl-smi">fragment</span>) {
-    div.innerText <span class="pl-k">=</span> fragment;
-});
-
-<span class="pl-c">// Pull the current state from the URL</span>
-Stateless.pull();
-
-<span class="pl-c">// Skip the already processed state</span>
-Stateless.skip(processed);
-Stateless.<span class="pl-c1">push</span>(processed);</pre></div>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/eugene-eeo">eugene-eeo</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+<head>
+  <meta charset="utf-8"/>
+  <title>Stateless.js</title>
+  <style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Prociono);
+body {
+  font-family: 'Prociono', Georgia, serif;
+  font-size: 20px;
+  width: 600px;
+  margin: 50px auto;
+}
+div#container {
+  padding: 0 10px;
+}
+div#left * {
+  float: right;
+  margin-bottom: 10px;
+}
+div#left {
+  width: calc(20% - 20px);
+  height: 100%;
+  margin-top: 20px;
+  float: left;
+  padding-top: 20px;
+  padding-right: 20px;
+  display: block;
+  right: 0;
+}
+div#right {
+  display: block;
+  width: 80%;
+  float: left;
+}
+h1 {
+  font-size: 200%;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+p {
+  margin: 0;
+}
+pre, code {
+  font-size: 90%;
+}
+span.comment {
+  color: #777;
+}
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="left">
+      <img src="https://raw.githubusercontent.com/eugene-eeo/stateless.js/master/media/small.png"/>
+      <a class="github-button" href="https://github.com/eugene-eeo/stateless.js" data-icon="octicon-star" data-style="mega" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+    <div id="right">
+      <h1>Stateless.js</h1>
+      <p>
+      Lightweight cross-browser context persistence library à la
+      <code>pushState</code>, via changing the hash fragment.
+      Mainly meant for <strike>freeloading</strike> serverless web
+      applications which need to store some state in the URL, and
+      provides some nice conveniences like:
+      </p>
+      <ul>
+        <li>Preventing repeated processing of identical hashes.</li>
+        <li>Ability to mark hashes as "processed".</li>
+      </ul>
+      <pre>Stateless.onChange(function(fragment) {
+  <span class="comment">// skip to avoid infinite loop</span>
+  Stateless.skip('nope');
+  Stateless.push('nope');
+});
+Stateless.pull();</pre>
+    </div>
+  </div>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>
