@@ -2,10 +2,10 @@
 
 <img src="https://raw.githubusercontent.com/eugene-eeo/stateless.js/master/media/small.png" hspace="10" vspace="6" align="left"/>
 
-Simple, cross-browser ``pushState`` via changing the hash
-fragment. Mainly meant for ~~freeloading~~ serverless web
-applications or applications which need to store some state
-in the URL, and provides some nice conveniences like:
+Lightweight cross-browser context persistence library à la
+``pushState``, via changing the hash fragment. Mainly meant
+for ~~freeloading~~ serverless web applications which need
+to store some state in the URL.
 
  - Preventing repeated processing of identical hashes- if you
  push the same hash twice it will not be processed twice. This
