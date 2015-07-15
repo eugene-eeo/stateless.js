@@ -27,8 +27,9 @@
 
   /**
    * Mark the state as processed- if the hash is
-   * changed to the identical state then no
-   * Stateless handlers will be fired.
+   * changed to the identical state then no Stateless
+   * handlers will be fired. You do not need to prefix
+   * the state with a hashtag.
    *
    * @param {String} state
    */
