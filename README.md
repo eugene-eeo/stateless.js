@@ -1,4 +1,6 @@
-# ![Stateless](https://raw.githubusercontent.com/eugene-eeo/stateless.js/master/media/small.png) Stateless.js
+# Stateless.js
+
+<img src="https://raw.githubusercontent.com/robinedwards/neomodel/master/doc/source/_static/neomodel-300.png" hspace="10" vspace="6" align="left"/>
 
 Simple, cross-browser ``pushState`` via changing the hash
 fragment. Mainly meant for ~~freeloading~~ serverless web
