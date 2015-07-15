@@ -49,14 +49,13 @@
 
   /**
    * Set the current hash fragment as the given
-   * state. Note that the '#' character will be
-   * automatically added, thus it is not necessary
-   * to preceed your strings with '#'.
+   * state. Note that it is not necessary to
+   * preceed your strings with '#'.
    *
    * @param {String} state
    */
   var push = function(state) {
-    window.location.hash = '#' + state;
+    window.location.hash = state;
   };
 
   /**
