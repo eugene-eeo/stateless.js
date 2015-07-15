@@ -19,7 +19,7 @@
     if (idx !== -1) {
       handlers.splice(idx, 1);
     }
-  }
+  };
 
   /**
    * Clears the array of registered handlers.
@@ -71,7 +71,7 @@
    */
   var replace = function(state) {
     window.location.replace('#' + state);
-  }
+  };
 
   /**
    * Register a Stateless handler. Handlers will
