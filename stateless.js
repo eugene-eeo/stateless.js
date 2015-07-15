@@ -73,7 +73,7 @@
   window.addEventListener('hashchange', function(ev) {
     var hash = window.location.hash;
     if (hash !== previous[0]) {
-      var fragment = hash.substr(1);
+      var fragment = hash.substring(1);
       fireHandlers(fragment);
       skip(fragment);
     }
