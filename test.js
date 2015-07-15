@@ -2,6 +2,30 @@ beforeEach(function() {
   Stateless.clear();
 });
 
+
+var setupNotRan = function(done) {
+  var stack = [];
+  Stateless.onChange(function() {
+    stack.push(1);
+  });
+  Stateless.clear();
+  var handler = function() {
+    window.removeEventListener("hashchange", handler);
+    expect(stack).toEqual([]);
+    done();
+  };
+  window.addEventListener("hashchange", handler, false);
+}
+
+
+describe('Stateless.clear', function() {
+  it('clears the callback stack', function(done) {
+    setupNotRan(done);
+    Stateless.push('change');
+  });
+});
+
+
 describe('Stateless.push', function() {
   it('changes the hash fragment', function() {
     Stateless.push('abc');
@@ -14,6 +38,14 @@ describe('Stateless.push', function() {
       done();
     });
     Stateless.push('def');
+  });
+
+  describe('when the state is identical', function() {
+    it('does not fire the handlers', function(done) {
+      Stateless.clear();
+      setupNotRan(done);
+      Stateless.push('def');
+    });
   });
 });
 
@@ -34,5 +66,24 @@ describe('Stateless.pull', function() {
       done()
     });
     Stateless.pull();
+  });
+});
+
+
+describe('Stateless.skip', function() {
+  it("doesn't fire handlers when state is identical",
+     function(done) {
+    setupNotRan(done);
+    Stateless.skip('change1');
+    Stateless.push('change1');
+  });
+  it("fires the handlers when the state is not identical",
+     function(done) {
+    Stateless.onChange(function(frag) {
+      expect(frag).toEqual('change3');
+      done();
+    });
+    Stateless.skip('change2');
+    Stateless.push('change3');
   });
 });

@@ -23,10 +23,7 @@
   };
 
   var push = function(state) {
-    var hash = '#' + state;
-    if (window.location.hash !== hash) {
-      window.location.hash = hash;
-    }
+    window.location.hash = '#' + state;
   };
 
   var onChange = function(f) {
