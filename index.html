@@ -13,12 +13,29 @@ body {
 div#container {
   padding: 0 0.5em;
 }
-div#left * {
-  float: right;
+div#left img {
   margin-bottom: 0.5em;
 }
+div#left a {
+  margin-bottom: 0.2em;
+  display: block;
+  text-align: center;
+  align-content: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 90%;
+  font-weight: bold;
+  color: #000;
+  width: 100%;
+  background-color: #FAFAFA;
+  border: 1px solid #EEE;
+  padding: 0;
+}
+div#left a:hover {
+  background-color: #EEE;
+}
 div#left {
-  width: calc(20% - 0.75em);
+  width: calc(18% - 0.75em);
   height: 100%;
   float: left;
   padding-top: 2em;
@@ -47,12 +64,14 @@ span.comment {
   color: #777;
 }
   </style>
+  <script src="https://buttons.github.io/buttons.js"></script>
 </head>
 <body>
   <div id="container">
     <div id="left">
       <img src="small.png"/>
-      <a class="github-button" href="https://github.com/eugene-eeo/stateless.js" data-icon="octicon-star" data-style="mega" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+      <a href="https://github.com/eugene-eeo/stateless.js">Github</a>
+      <a href="https://eugene-eeo.github.io/stateless.js/test.html">Tests</a>
     </div>
     <div id="right">
       <h1>Stateless.js</h1>
@@ -75,6 +94,5 @@ span.comment {
 Stateless.pull();</pre>
     </div>
   </div>
-  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
