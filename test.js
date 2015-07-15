@@ -1,105 +1,102 @@
+window.location.hash = '#';
+
+assert = function(k) {
+  if (!k) {
+    throw new Error('falsy!');
+  }
+}
+
 beforeEach(function() {
   Stateless.clear();
 });
 
 
-var setupNotRan = function(done) {
-  var stack = [];
-  Stateless.onChange(function() {
-    stack.push(1);
-  });
-  Stateless.clear();
-  var handler = function() {
-    window.removeEventListener("hashchange", handler);
-    expect(stack).toEqual([]);
-    done();
-  };
-  window.addEventListener("hashchange", handler, false);
-}
-
-
-describe('Stateless.clear', function() {
-  it('clears the callback stack', function(done) {
-    setupNotRan(done);
-    Stateless.push('change');
-  });
-});
-
-
-describe('Stateless.push', function() {
-  it('changes the hash fragment', function() {
-    Stateless.push('abc');
-    expect(window.location.hash).toEqual('#abc');
-  });
-
-  it('fires the handlers', function(done) {
+describe('Stateless#push()', function() {
+  it('should fire the handlers', function(done) {
     Stateless.onChange(function(fragment) {
-      expect(fragment).toEqual('def');
+      assert(fragment === 'def');
       done();
     });
     Stateless.push('def');
   });
 
-  describe('when the state is identical', function() {
-    it('does not fire the handlers', function(done) {
-      Stateless.clear();
-      setupNotRan(done);
+  it('should change the hash', function() {
+    assert(window.location.hash === '#def');
+  });
+});
+
+
+describe('Stateless#pull()', function() {
+  var assertion = function() {
+    it('should fire the handlers', function(done) {
+      Stateless.onChange(function() {
+        done();
+      });
+      Stateless.pull();
+    });
+  };
+  describe('the state is unidentical', function() {
+    window.location.hash = '#change';
+    assertion();
+  });
+  describe('the state is identical', assertion);
+});
+
+
+describe('Stateless#skip()', function(done) {
+  describe('given identical hash', function() {
+    it('skips identical hashes', function(done) {
+      var stack = [];
+      Stateless.onChange(function(frag) {
+        stack.push(frag);
+      });
+      Stateless.skip('abc');
+      Stateless.push('abc');
+      setTimeout(function() {
+        assert(stack[stack.length-1] !== 'abc')
+        done();
+      }, 15);
+    });
+  });
+  describe('given unidentical hash', function() {
+    it('processes the hash', function(done) {
+      Stateless.onChange(function() {
+        done();
+      });
+      Stateless.skip('abc');
       Stateless.push('def');
     });
   });
 });
 
 
-describe('Stateless.pull', function() {
-  it('fires the handlers', function(done) {
-    window.location.hash = '123';
-    Stateless.onChange(function(fragment) {
-      expect(fragment).toEqual('123');
-      done();
-    });
-    Stateless.pull();
-  });
-
-  it('fires even if the state is identical', function(done) {
-    Stateless.onChange(function() {
-      expect(true).toEqual(true);
-      done()
-    });
-    Stateless.pull();
-  });
-});
-
-
-describe('Stateless.skip', function() {
-  it("doesn't fire handlers when state is identical",
-     function(done) {
-    setupNotRan(done);
-    Stateless.skip('change1');
-    Stateless.push('change1');
-  });
-  it("fires the handlers when the state is not identical",
-     function(done) {
-    Stateless.onChange(function(frag) {
-      expect(frag).toEqual('change3');
-      done();
-    });
-    Stateless.skip('change2');
-    Stateless.push('change3');
-  });
-});
-
-
-describe('Stateless.off', function() {
-  it('removes the handler', function(done) {
+describe('Stateless#off', function() {
+  it('stops the handler from being fired', function(done) {
     var stack = [];
-    var handler = function() {
-      stack.push(1);
-    };
-    Stateless.onChange(handler);
+    var handler = function(frag) {
+      stack.push(frag);
+    }
+    Stateless.off(handler);
     Stateless.onChange(function() {
-      expect(stack).toEqual([]);
+      assert(stack[stack.length-1] !== 'ghi')
       done();
     });
-    Stateless.push('radical');
+    Stateless.push('ghi');
+  });
+});
+
+
+describe('Stateless#clear', function() {
+  it('clears all handlers', function(done) {
+    var stack = [];
+    Stateless.onChange(function(frag) {
+      stack.push(frag);
+    });
+    window.addEventListener('hashchange', function() {
+      assert(stack[stack.length-1] !== 'jkl');
+      done();
+    });
+    Stateless.clear();
+    Stateless.push('jkl');
   });
 });

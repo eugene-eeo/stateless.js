@@ -1,18 +1,19 @@
 <html>
 <head>
-  <link rel="shortcut icon" type="image/png" href="jasmine/lib/jasmine-2.3.4/jasmine_favicon.png">
-  <link rel="stylesheet" type="text/css" href="jasmine/lib/jasmine-2.3.4/jasmine.css">
-
-  <script src="jasmine/lib/jasmine-2.3.4/jasmine.js"></script>
-  <script src="jasmine/lib/jasmine-2.3.4/jasmine-html.js"></script>
-  <script src="jasmine/lib/jasmine-2.3.4/boot.js"></script>
-
-  <script>
-  window.location.hash = '#';
-  </script>
-  <script src="stateless.js"></script>
-  <script src="test.js"></script>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
 </head>
 <body>
+  <div id="mocha"></div>
+  <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+
+  <script>mocha.setup('bdd')</script>
+  <script src="stateless.js"></script>
+  <script src="test.js"></script>
+  <script>
+    mocha.checkLeaks();
+    mocha.run();
+  </script>
 </body>
 </html>
