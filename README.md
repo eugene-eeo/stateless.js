@@ -1,0 +1,2 @@
+# stateless.js
+simpler pushstate
