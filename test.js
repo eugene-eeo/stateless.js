@@ -1,6 +1,10 @@
 window.location.hash = '#';
 
-assert = function(k) {
+Array.prototype.last = function() {
+  return this[this.length-1];
+};
+
+var assert = function(k) {
   if (!k) {
     throw new Error('falsy!');
   }
@@ -8,6 +12,9 @@ assert = function(k) {
 
 beforeEach(function() {
   Stateless.clear();
+  beforeEach(function() {
+    Stateless.clear();
+  });
 });
 
 
@@ -44,28 +51,24 @@ describe('Stateless#pull()', function() {
 
 
 describe('Stateless#skip()', function(done) {
-  describe('given identical hash', function() {
-    it('skips identical hashes', function(done) {
-      var stack = [];
-      Stateless.onChange(function(frag) {
-        stack.push(frag);
-      });
-      Stateless.skip('abc');
-      Stateless.push('abc');
-      setTimeout(function() {
-        assert(stack[stack.length-1] !== 'abc')
-        done();
-      }, 15);
+  it('skips identical hashes', function(done) {
+    var stack = [];
+    Stateless.onChange(function(frag) {
+      stack.push(frag);
     });
+    Stateless.skip('abc');
+    Stateless.push('abc');
+    setTimeout(function() {
+      assert(stack.last() !== 'abc')
+      done();
+    }, 15);
   });
-  describe('given unidentical hash', function() {
-    it('processes the hash', function(done) {
-      Stateless.onChange(function() {
-        done();
-      });
-      Stateless.skip('abc');
-      Stateless.push('def');
+  it('processes unidentical hash', function(done) {
+    Stateless.onChange(function() {
+      done();
     });
+    Stateless.skip('abc');
+    Stateless.push('def');
   });
 });
 
@@ -78,7 +81,7 @@ describe('Stateless#off', function() {
     }
     Stateless.off(handler);
     Stateless.onChange(function() {
-      assert(stack[stack.length-1] !== 'ghi')
+      assert(stack.last() !== 'ghi')
       done();
     });
     Stateless.push('ghi');
@@ -93,7 +96,7 @@ describe('Stateless#clear', function() {
       stack.push(frag);
     });
     window.addEventListener('hashchange', function() {
-      assert(stack[stack.length-1] !== 'jkl');
+      assert(stack.last() !== 'jkl');
       done();
     });
     Stateless.clear();
