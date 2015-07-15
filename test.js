@@ -52,11 +52,11 @@ describe('Stateless.push', function() {
 
 describe('Stateless.pull', function() {
   it('fires the handlers', function(done) {
+    window.location.hash = '123';
     Stateless.onChange(function(fragment) {
       expect(fragment).toEqual('123');
       done();
     });
-    window.location.hash = '123';
     Stateless.pull();
   });
 
