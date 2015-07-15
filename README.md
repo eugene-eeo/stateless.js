@@ -5,7 +5,8 @@
 Lightweight cross-browser context persistence library à la
 ``pushState``, via changing the hash fragment. Mainly meant
 for ~~freeloading~~ serverless web applications which need
-to store some state in the URL.
+to store some state in the URL. Also comes with a super
+simple API.
 
  - Prevents repeated processing of identical hashes- if you
  push the same hash twice or the hash changes into the same
@@ -18,9 +19,10 @@ to store some state in the URL.
 The recommended pattern is:
 
 ```js
-Stateless.onChange(function(fragment) {
-    div.innerText = fragment;
-});
+var handler = function(fragment) {
+  div.innerText = fragment;
+}
+Stateless.onChange(handler);
 
 // Pull the current state from the URL
 Stateless.pull();
@@ -28,4 +30,7 @@ Stateless.pull();
 // Skip the already processed state
 Stateless.skip(processed);
 Stateless.push(processed);
+
+// Stop!
+Stateless.off(handler);
 ```
