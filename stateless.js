@@ -6,22 +6,21 @@
     for (var i = 0; i<handlers.length; i++) {
       handlers[i](fragment);
     }
-  }
+  };
 
   var clear = function() {
     handlers.length = 0;
-  }
+  };
 
   var skip = function(state) {
-    previous.pop();
-    previous.push('#' + state);
-  }
+    previous[0] = '#' + state;
+  };
 
   var pull = function() {
     var fragment = window.location.hash.substr(1);
     fireHandlers(fragment);
     skip(fragment);
-  }
+  };
 
   var push = function(state) {
     var hash = '#' + state;
@@ -32,7 +31,7 @@
 
   var onChange = function(f) {
     handlers.push(f);
-  }
+  };
 
   window.addEventListener('hashchange', function(ev) {
     var hash = window.location.hash;
