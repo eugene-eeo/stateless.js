@@ -86,12 +86,12 @@ span.comment {
         <li>Preventing repeated processing of identical hashes.</li>
         <li>Ability to mark hashes as "processed".</li>
       </ul>
-      <pre>Stateless.onChange(function(fragment) {
-  <span class="comment">// skip to avoid infinite loop</span>
-  Stateless.skip('nope');
+      <pre><span class="comment">// the hash will always be #nope</span>
+Stateless.onChange(function(fragment) {
   Stateless.push('nope');
 });
-Stateless.pull();</pre>
+Stateless.pull();
+Stateless.skip('processed');</pre>
     </div>
   </div>
 </body>
