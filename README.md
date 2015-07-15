@@ -1,4 +1,4 @@
-# Stateless.js
+# ![Stateless](https://raw.githubusercontent.com/eugene-eeo/stateless.js/master/media/small.png) Stateless.js
 
 Simple, cross-browser ``pushState`` via changing the hash
 fragment. Mainly meant for ~~freeloading~~ serverless web
