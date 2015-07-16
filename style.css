@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'Prociono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Prociono'), local('Prociono-Regular'), url(http://fonts.gstatic.com/s/prociono/v6/NzahrnHu7VVvHGo3vxCa9nYhjbSpvc47ee6xR_80Hnw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+body {
+  font-family: 'Prociono', Georgia, serif;
+  font-size: 20px;
+  width: 26em;
+  margin: 2.5em auto;
+}
+div {
+  display: block;
+}
+div#container {
+  padding: 0 0.5em;
+}
+div#left img {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+div#left a {
+  margin-bottom: 0.2em;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #000;
+  width: 100%;
+  background-color: #EEE;
+  border: 1px solid #CCC;
+  padding: 0;
+}
+div#left a:hover {
+  background-color: #CCC;
+}
+div#left {
+  width: calc(20% - 0.7em);
+  height: 100%;
+  float: left;
+  padding-right: 0.7em;
+}
+div#right {
+  width: 80%;
+  float: left;
+}
+h1 {
+  font-size: 200%;
+  font-weight: normal;
+  margin-bottom: 0.5em;
+}
+p {
+  margin: 0;
+}
+pre, code {
+  font-size: 90%;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+span.comment {
+  color: #777;
+}
