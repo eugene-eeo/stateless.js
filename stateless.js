@@ -26,6 +26,17 @@
   };
 
   /**
+   * Register a Stateless handler. Handlers will
+   * be passed the hash fragment after the hash
+   * character.
+   *
+   * @param {Function} handler
+   */
+  var onChange = function(handler) {
+    handlers.push(handler);
+  };
+
+  /**
    * Removes the given handler from the registered
    * handlers.
    *
@@ -88,17 +99,6 @@
     window.location.replace('#' + state);
   };
 
-  /**
-   * Register a Stateless handler. Handlers will
-   * be passed the hash fragment after the hash
-   * character.
-   *
-   * @param {Function} handler
-   */
-  var onChange = function(handler) {
-    handlers.push(handler);
-  };
-  
   window.addEventListener('hashchange', function() {
     var hash = getHash();
     if (hash !== previous) {
