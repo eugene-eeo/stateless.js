@@ -7,15 +7,9 @@
 }
 body {
   font-family: 'Prociono', Georgia, serif;
-  font-size: 20px;
+  font-size: 18px;
   width: 26em;
   margin: 2.5em auto;
-}
-div {
-  display: block;
-}
-div#container {
-  padding: 0 0.5em;
 }
 div#left img {
   margin-top: 2em;
@@ -26,13 +20,11 @@ div#left a {
   display: block;
   text-align: center;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 0.30em;
   font-weight: bold;
-  color: #000;
-  width: 100%;
   background-color: #EEE;
-  border: 1px solid #CCC;
-  padding: 0;
+  border: 0.06em solid #CCC;
+  color: #000;
 }
 div#left a:hover {
   background-color: #CCC;
@@ -41,7 +33,7 @@ div#left {
   width: calc(20% - 0.7em);
   height: 100%;
   float: left;
-  padding-right: 0.7em;
+  margin-right: 0.7em;
 }
 div#right {
   width: 80%;
@@ -50,7 +42,7 @@ div#right {
 h1 {
   font-size: 200%;
   font-weight: normal;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.15em;
 }
 p {
   margin: 0;
