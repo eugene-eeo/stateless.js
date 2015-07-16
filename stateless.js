@@ -7,8 +7,8 @@
 
 (function(global){
   'use strict';
-  var previous = [null];
   var handlers = [];
+  var previous = null;
   var hashRegex = /#.*$/;
 
   var fireHandlers = function(fragment) {
@@ -20,8 +20,7 @@
   var getHash = function() {
     // Workaround for Firefox which automatically
     // decodes the hash fragment [bug:483304]
-    var match = hashRegex.exec(window.location.href) || '#';
-    return match[0];
+    return (hashRegex.exec(window.location.href) || '#')[0];
   };
 
   /**
@@ -53,7 +52,7 @@
    * @param {String} state
    */
   var skip = function(state) {
-    previous[0] = '#' + state;
+    previous = '#' + state;
   };
 
   /**
@@ -102,7 +101,7 @@
   
   window.addEventListener('hashchange', function() {
     var hash = getHash();
-    if (hash !== previous[0]) {
+    if (hash !== previous) {
       var fragment = hash.substring(1);
       fireHandlers(fragment);
       skip(fragment);
