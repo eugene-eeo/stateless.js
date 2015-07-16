@@ -1,6 +1,8 @@
 (function(global){
+  'use strict';
   var previous = [null];
   var handlers = [];
+  var hashRegex = /#.*$/;
 
   var fireHandlers = function(fragment) {
     for (var i = 0; i<handlers.length; i++) {
@@ -83,13 +85,16 @@
   var onChange = function(handler) {
     handlers.push(handler);
   };
-
-  window.addEventListener('hashchange', function(ev) {
-    var hash = window.location.hash;
-    if (hash !== previous[0]) {
-      var fragment = hash.substring(1);
-      fireHandlers(fragment);
-      skip(fragment);
+  
+  window.addEventListener('hashchange', function() {
+    var match = hashRegex.exec(window.location.href);
+    if (match) {
+      var hash = match[0];
+      if (hash !== previous[0]) {
+        var fragment = hash.substring(1);
+        fireHandlers(fragment);
+        skip(fragment);
+      }
     }
   });
 

@@ -59,9 +59,9 @@ describe('Stateless#skip()', function(done) {
     Stateless.skip('abc');
     Stateless.push('abc');
     setTimeout(function() {
-      assert(stack.last() !== 'abc')
+      assert(stack.last() !== 'abc');
       done();
-    }, 15);
+    }, 20);
   });
   it('processes unidentical hash', function(done) {
     Stateless.onChange(function() {
@@ -81,7 +81,7 @@ describe('Stateless#off', function() {
     }
     Stateless.off(handler);
     Stateless.onChange(function() {
-      assert(stack.last() !== 'ghi')
+      assert(stack.last() !== 'ghi');
       done();
     });
     Stateless.push('ghi');
@@ -103,12 +103,12 @@ describe('Stateless#clear', function() {
     Stateless.onChange(function(frag) {
       stack.push(frag);
     });
-    window.addEventListener('hashchange', function() {
-      assert(stack.last() !== 'jkl');
-      done();
-    });
     Stateless.clear();
     Stateless.push('jkl');
+    setTimeout(function() {
+      assert(stack.last() !== 'jkl');
+      done();
+    }, 20);
   });
 });
 
@@ -124,7 +124,7 @@ describe('Stateless#replace', function() {
   });
   it('replaces the hash fragment', function(done) {
     Stateless.onChange(function(frag) {
-      assert(frag === 'chr2')
+      assert(frag === 'chr2');
       done();
     });
     Stateless.replace('chr2');
