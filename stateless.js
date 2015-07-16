@@ -13,7 +13,7 @@
 
   var fireHandlers = function(hash) {
     var fragment = hash.substring(1);
-    for (var i = 0; i<handlers.length; i++) {
+    for (var i = 0; i < handlers.length; i++) {
       handlers[i](fragment);
     }
     skip(fragment);
