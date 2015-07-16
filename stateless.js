@@ -1,3 +1,10 @@
+/*!!
+ * Stateless.js <http://github.com/eugene-eeo/stateless.js>
+ * @author Eeo Jun
+ * @version 0.1.0
+ * Released under the MIT License
+ */
+
 (function(global){
   'use strict';
   var previous = [null];
