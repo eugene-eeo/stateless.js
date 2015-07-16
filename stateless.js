@@ -61,7 +61,7 @@
    * of whether the hash has changed.
    */
   var pull = function() {
-    var fragment = getHash().substr(1);
+    var fragment = getHash().substring(1);
     fireHandlers(fragment);
     skip(fragment);
   };
