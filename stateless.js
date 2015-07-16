@@ -11,10 +11,12 @@
   var previous = null;
   var hashRegex = /#.*$/;
 
-  var fireHandlers = function(fragment) {
+  var fireHandlers = function(hash) {
+    var fragment = hash.substring(1);
     for (var i = 0; i<handlers.length; i++) {
       handlers[i](fragment);
     }
+    skip(fragment);
   };
 
   var getHash = function() {
@@ -61,9 +63,7 @@
    * of whether the hash has changed.
    */
   var pull = function() {
-    var fragment = getHash().substring(1);
-    fireHandlers(fragment);
-    skip(fragment);
+    fireHandlers(getHash());
   };
 
   /**
@@ -102,9 +102,7 @@
   window.addEventListener('hashchange', function() {
     var hash = getHash();
     if (hash !== previous) {
-      var fragment = hash.substring(1);
-      fireHandlers(fragment);
-      skip(fragment);
+      fireHandlers(hash);
     }
   });
 
