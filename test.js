@@ -10,9 +10,9 @@ var assert = function(k) {
   }
 }
 
-beforeEach(function() {
+afterEach(function() {
   Stateless.clear();
-  beforeEach(function() {
+  afterEach(function() {
     Stateless.clear();
   });
 });

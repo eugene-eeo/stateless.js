@@ -17,6 +17,13 @@
     }
   };
 
+  var getHash = function() {
+    // Workaround for Firefox which automatically
+    // decodes the hash fragment [bug:483304]
+    var match = hashRegex.exec(window.location.href) || '#';
+    return match[0];
+  };
+
   /**
    * Removes the given handler from the registered
    * handlers.
@@ -34,7 +41,7 @@
    * Clears the array of registered handlers.
    */
   var clear = function() {
-    handlers.length = 0;
+    handlers = [];
   };
 
   /**
@@ -55,7 +62,7 @@
    * of whether the hash has changed.
    */
   var pull = function() {
-    var fragment = window.location.hash.substr(1);
+    var fragment = getHash().substr(1);
     fireHandlers(fragment);
     skip(fragment);
   };
@@ -68,7 +75,7 @@
    * @param {String} state
    */
   var push = function(state) {
-    window.location.hash = state;
+    window.location.hash = '#' + state;
   };
 
   /**
@@ -94,10 +101,7 @@
   };
   
   window.addEventListener('hashchange', function() {
-    // Workaround for Firefox which automatically
-    // decodes the hash fragment [bug:483304]
-    var match = hashRegex.exec(window.location.href) || '#';
-    var hash = match[0];
+    var hash = getHash();
     if (hash !== previous[0]) {
       var fragment = hash.substring(1);
       fireHandlers(fragment);
