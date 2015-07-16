@@ -89,14 +89,12 @@
   window.addEventListener('hashchange', function() {
     // Workaround for Firefox which automatically
     // decodes the hash fragment [bug:483304]
-    var match = hashRegex.exec(window.location.href);
-    if (match) {
-      var hash = match[0];
-      if (hash !== previous[0]) {
-        var fragment = hash.substring(1);
-        fireHandlers(fragment);
-        skip(fragment);
-      }
+    var match = hashRegex.exec(window.location.href) || '#';
+    var hash = match[0];
+    if (hash !== previous[0]) {
+      var fragment = hash.substring(1);
+      fireHandlers(fragment);
+      skip(fragment);
     }
   });
 
