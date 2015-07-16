@@ -76,14 +76,15 @@ span.comment {
     <div id="right">
       <h1>Stateless.js</h1>
       <p>
-      Lightweight (485 bytes minified) cross-browser context persistence
-      library à la <code>pushState</code>, via changing the hash fragment.
-      Mainly meant for <strike>freeloading</strike> serverless web
-      applications which need to store some state in the URL, and
-      provides some nice conveniences like:
+      Lightweight cross-browser context persistence library à
+      la <code>pushState</code>, via changing the hash fragment.
+      Mainly meant for <strike>freeloading</strike> serverless
+      web applications which need to store some state in the
+      URL, and provides some nice conveniences like:
       </p>
       <ul>
-        <li>Preventing repeated processing of identical hashes.</li>
+        <li>Preventing repeated processing of consecutive,
+            identical hashes.</li>
         <li>Ability to mark hashes as "processed".</li>
       </ul>
       <pre><span class="comment">// the hash will always be #nope</span>
