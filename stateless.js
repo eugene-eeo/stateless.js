@@ -99,11 +99,10 @@
 
   window.addEventListener('hashchange', function() {
     var state = getState();
-    if (previous[state]) {
-      delete previous[state]
-      return;
-    }
-    fireHandlers(state);
+    if (previous[state])
+      delete previous[state];
+    else
+      fireHandlers(state);
   });
 
   global.Stateless = {
