@@ -1,10 +1,14 @@
 /*!!
  * Stateless.js <http://github.com/eugene-eeo/stateless.js>
- * @author Eeo Jun
+ * @module Stateless
  * @version 0.1.0
+ * @author Eeo Jun
  * Released under the MIT License
  */
 
+/**
+ * @namespace Stateless
+ */
 (function(global){
   'use strict';
   var handlers = [];
@@ -28,6 +32,7 @@
    * be passed the hash fragment after the hash
    * character.
    *
+   * @memberof Stateless
    * @param {Function} handler
    */
   var onChange = function(handler) {
@@ -38,6 +43,7 @@
    * Removes the given handler from the registered
    * handlers.
    *
+   * @memberof Stateless
    * @param {Function} handler
    */
   var off = function(handler) {
@@ -49,6 +55,8 @@
 
   /**
    * Clears the array of registered handlers.
+   *
+   * @memberof Stateless
    */
   var clear = function() {
     handlers = [];
@@ -60,6 +68,7 @@
    * handlers will be fired. You do not need to prefix
    * the state with a hashtag.
    *
+   * @memberof Stateless
    * @param {String} state
    */
   var skip = function(state) {
@@ -70,6 +79,8 @@
    * Pull the current state from the URL, and
    * forcefully runs the handlers regardless
    * of whether the hash has changed.
+   *
+   * @memberof Stateless
    */
   var pull = function() {
     fireHandlers(getState());
@@ -80,6 +91,7 @@
    * state. Note that it is not necessary to
    * preceed your strings with '#'.
    *
+   * @memberof Stateless
    * @param {String} state
    */
   var push = function(state) {
@@ -91,6 +103,7 @@
    * Does not push another entry into the browser
    * history.
    *
+   * @memberof Stateless
    * @param {String} state
    */
   var replace = function(state) {
