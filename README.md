@@ -8,14 +8,14 @@ for ~~freeloading~~ serverless web applications which need
 to store some state in the URL. Also comes with a super
 simple API.
 
- - Prevents repeated processing - if the same hash is pushed
- twice *consecutively* it will not be processed twice. This
- is useful for example when you have some expensive
+ - **Prevents repeated processing -** if the same hash is
+ pushed twice *consecutively* it will not be processed twice.
+ This is useful for example when you have some expensive
  calculations.
- - Ability to mark hashes as "processed"- they will still be
- pushed to the browser's history stack but they will not be
- processed by any Stateless handlers.
- - Asynchronous firing of handlers via hooking into `hashchange`.
+ - **Ability to mark hashes as processed -** they will still
+ be pushed to the browser's history stack but they will not
+ be processed by any Stateless handlers.
+ - **Asynchronous handlers** via hooking into `hashchange`.
 
 The recommended pattern is:
 
