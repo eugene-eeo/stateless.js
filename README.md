@@ -30,7 +30,7 @@ Skipping a hash:
 
 ```js
 Stateless.skip('1'); // '1' pushed into set
-Stateless.push('1'); // Handlers not fired, '1' removed
+Stateless.push('1'); // #1, Handlers not fired, '1' removed
 ```
 
 Manipulating the handlers:
