@@ -14,12 +14,12 @@ p {
   float: left;
   width: 20%;
   display: block;
-  font-weight: bold;
 }
 .left img {
   margin: 0.63em 0 0.63em 0;
 }
 .left a {
+  font-weight: bold;
   display: block;
   color: #000;
   text-decoration: underline;
@@ -28,7 +28,7 @@ p {
   text-decoration: none;
 }
 .right {
-  float: right;
+  float: left;
   width: 80%;
 }
 h1, h3 {
@@ -48,4 +48,35 @@ pre {
   font-size: 90%;
   background: #F4F4F4;
   padding: 0.35em;
+  overflow-x: scroll;
+}
+
+@media only screen and (max-device-width: 480px) {
+body {
+  width: inherit;
+}
+.left {
+  top: 0;
+  position: fixed;
+  padding: 0.3em 0.6em;
+  background-color: #EEE;
+  clear: both;
+  width: 100%;
+  text-align: center;
+}
+.right {
+  width: calc(100% - 1.2em);
+  margin-top: -2em;
+  padding: 0.6em;
+}
+.left a {
+  display: block;
+  float: left;
+  margin: 0 0.3em;
+}
+.left img {
+  float: left;
+  width: 1.25em;
+  margin: 0 0.2em 0 0;
+}
 }
