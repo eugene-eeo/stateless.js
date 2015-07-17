@@ -8,14 +8,13 @@
 (function(global){
   'use strict';
   var handlers = [];
-  var previous = null;
+  var previous = {};
   var hashRegex = /#(.*)$/;
 
   var fireHandlers = function(state) {
     for (var i = 0; i < handlers.length; i++) {
       handlers[i](state);
     }
-    skip(state);
   };
 
   var getState = function() {
@@ -64,7 +63,7 @@
    * @param {String} state
    */
   var skip = function(state) {
-    previous = state;
+    previous[state] = 1;
   };
 
   /**
@@ -100,9 +99,11 @@
 
   window.addEventListener('hashchange', function() {
     var state = getState();
-    if (state !== previous) {
-      fireHandlers(state);
+    if (previous[state]) {
+      delete previous[state]
+      return;
     }
+    fireHandlers(state);
   });
 
   global.Stateless = {
