@@ -1,42 +1,37 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <meta name=viewport content="initial-scale=0.60,maximum-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <link rel="stylesheet" href="style.css"/>
   <title>Stateless.js</title>
 </head>
 <body>
-  <div id="container">
-    <div id="left">
-      <center>
-      <img src="small.png"/>
-      <a href="https://github.com/eugene-eeo/stateless.js">Github</a>
-      <a href="https://eugene-eeo.github.io/stateless.js/test.html">Tests</a>
-      </center>
-    </div>
-    <div id="right">
-      <h1>Stateless.js</h1>
-      <p>
-      Simple cross-browser context persistence library à
-      la <code>pushState</code>, via changing the hash fragment.
-      Mainly meant for <strike>freeloading</strike> serverless
-      web applications which need to store some state in the
-      URL, and provides some nice conveniences like:
-      </p>
-      <ul>
-        <li>Preventing repeated processing of consecutive,
-            identical hashes.</li>
-        <li>Ability to mark hashes as "processed".</li>
-        <li>Asynchronous handlers.</li>
-      </ul>
-      <pre><span class="comment">// the hash will always be #nope</span>
-Stateless.onChange(function(fragment) {
-  Stateless.push('nope');
+  <div class="left">
+    <center>
+    <img src="small.png"/>
+    <a href="https://github.com/eugene-eeo/stateless.js">Github</a>
+    <a href="https://github.com/eugene-eeo/stateless.js/releases/download/0.1.0/stateless.min.js">Download</a>
+    <a href="test.html">Tests</a>
+    </center>
+  </div>
+  <div class="right">
+    <h1>Stateless.js</h1>
+    <p>
+    Simple cross-browser context persistence library à la
+    <code>pushState</code>, via changing the hash fragment.
+    Mainly meant for <strike>freeloading</strike> serverless
+    web services which need to store some state in the URL.
+    </p>
+    <pre>Stateless.onChange(function(fragment) {
+  console.log(fragment);
 });
-Stateless.pull();
-Stateless.skip('processed');</pre>
-    </div>
+Stateless.pull();</pre>
+    <h3>Features</h3>
+    <ul>
+      <li>Prevents consecutive processing of identical hashes</li>
+      <li>Ability to mark hashes as processed</li>
+      <li>Asynchronous handlers</li>
+    </ul>
   </div>
 </body>
 </html>

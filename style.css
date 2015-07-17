@@ -1,56 +1,51 @@
-@font-face {
-  font-family: 'Prociono';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Prociono'), local('Prociono-Regular'), url(http://fonts.gstatic.com/s/prociono/v6/NzahrnHu7VVvHGo3vxCa9nYhjbSpvc47ee6xR_80Hnw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
 body {
-  font-family: 'Prociono', Georgia, serif;
-  font-size: 18px;
-  width: 26em;
-  margin: 2.5em auto;
-}
-div#left img {
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-}
-div#left a {
-  margin-bottom: 0.2em;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 0.30em;
-  font-weight: bold;
-  background-color: #EEE;
-  border: 0.06em solid #CCC;
-  color: #000;
-}
-div#left a:hover {
-  background-color: #CCC;
-}
-div#left {
-  width: calc(20% - 0.7em);
-  height: 100%;
-  float: left;
-  margin-right: 0.7em;
-}
-div#right {
-  width: 80%;
-  float: left;
-}
-h1 {
-  font-size: 200%;
-  font-weight: normal;
-  margin-bottom: 0.15em;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  margin: 4em auto;
+  width: 34.38em;
 }
 p {
   margin: 0;
 }
-pre, code {
-  font-size: 90%;
-  font-family: 'Consolas', 'Monaco', monospace;
+.aligned {
+  dislay: block;
 }
-span.comment {
-  color: #777;
+.left {
+  float: left;
+  width: 20%;
+  display: block;
+  font-weight: bold;
+}
+.left img {
+  margin: 0.63em 0 0.63em 0;
+}
+.left a {
+  display: block;
+  color: #000;
+  text-decoration: underline;
+}
+.left a:hover {
+  text-decoration: none;
+}
+.right {
+  float: right;
+  width: 80%;
+}
+h1, h3 {
+  margin: 0 0 0.31em 0;
+  border-bottom: 0.06em solid #DDD;
+}
+h1 {
+  font-size: 200%;
+}
+ul {
+  margin: 0;
+}
+h3 {
+  font-size: 120%;
+}
+pre {
+  font-size: 90%;
+  background: #F4F4F4;
+  padding: 0.35em;
 }

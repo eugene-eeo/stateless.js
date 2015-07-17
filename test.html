@@ -2,15 +2,16 @@
 <head>
   <meta charset="utf-8">
   <title>Mocha Tests</title>
-  <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico"/>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" />
 </head>
 <body>
   <div id="mocha"></div>
   <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
 
   <script>mocha.setup('bdd')</script>
-  <script type="text/javascript" src="https://cdn.rawgit.com/eugene-eeo/stateless.js/e540fc9bb888f19dd44ceaa6a13683fd26fcf517/stateless.js"></script>
-  <script type="text/javascript" src="https://cdn.rawgit.com/eugene-eeo/stateless.js/e540fc9bb888f19dd44ceaa6a13683fd26fcf517/test.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/eugene-eeo/stateless.js/0.1.0/stateless.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/eugene-eeo/stateless.js/0.1.0/test.js"></script>
   <script>
     mocha.checkLeaks();
     mocha.run();
