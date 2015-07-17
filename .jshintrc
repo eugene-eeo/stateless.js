@@ -2,7 +2,6 @@
   "camelcase" : true,
   "indent": 2,
   "undef": true,
-  "quotmark": "single",
   "maxlen": 80,
   "trailing": true,
   "browser": true

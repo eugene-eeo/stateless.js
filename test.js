@@ -1,3 +1,5 @@
+/* global Stateless,it,afterEach,describe */
+
 window.location.hash = '#';
 
 Array.prototype.last = function() {
@@ -8,7 +10,7 @@ var assert = function(k) {
   if (!k) {
     throw new Error('falsy!');
   }
-}
+};
 
 afterEach(function() {
   Stateless.clear();
@@ -78,7 +80,7 @@ describe('Stateless#off', function() {
     var stack = [];
     var handler = function(frag) {
       stack.push(frag);
-    }
+    };
     Stateless.off(handler);
     Stateless.onChange(function() {
       assert(stack.last() !== 'ghi');
