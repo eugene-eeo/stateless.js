@@ -9,20 +9,19 @@
   'use strict';
   var handlers = [];
   var previous = null;
-  var hashRegex = /#.*$/;
+  var hashRegex = /#(.*)$/;
 
-  var fireHandlers = function(hash) {
-    var fragment = hash.substring(1);
+  var fireHandlers = function(state) {
     for (var i = 0; i < handlers.length; i++) {
-      handlers[i](fragment);
+      handlers[i](state);
     }
-    skip(fragment);
+    skip(state);
   };
 
-  var getHash = function() {
+  var getState = function() {
     // Workaround for Firefox which automatically
     // decodes the hash fragment [bug:483304]
-    return (hashRegex.exec(window.location.href) || '#')[0];
+    return (hashRegex.exec(window.location.href) || '')[1];
   };
 
   /**
@@ -65,7 +64,7 @@
    * @param {String} state
    */
   var skip = function(state) {
-    previous = '#' + state;
+    previous = state;
   };
 
   /**
@@ -74,7 +73,7 @@
    * of whether the hash has changed.
    */
   var pull = function() {
-    fireHandlers(getHash());
+    fireHandlers(getState());
   };
 
   /**
@@ -100,9 +99,9 @@
   };
 
   window.addEventListener('hashchange', function() {
-    var hash = getHash();
-    if (hash !== previous) {
-      fireHandlers(hash);
+    var state = getState();
+    if (state !== previous) {
+      fireHandlers(state);
     }
   });
 
