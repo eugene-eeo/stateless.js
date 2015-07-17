@@ -17,21 +17,27 @@ simple API.
  be processed by any Stateless handlers.
  - **Asynchronous handlers** via hooking into `hashchange`.
 
-The recommended pattern is:
+### In a Nutshell
+
+Manipulating the browser hash:
 
 ```js
-var handler = function(fragment) {
-  div.innerText = fragment;
-}
-Stateless.onChange(handler);
+Stateless.push('1')    // #1, new history entry
+Stateless.replace('2') // #2, modifies entry
+```
 
-// Pull the current state from the URL
-Stateless.pull();
+Skipping a hash:
 
-// Skip the already processed state
-Stateless.skip(processed);
-Stateless.push(processed);
+```js
+Stateless.skip('1'); // '1' pushed into set
+Stateless.push('1'); // Handlers not fired, '1' removed
+```
 
-// Stop!
-Stateless.off(handler);
+Manipulating the handlers:
+
+```js
+Stateless.onChange(f1); // => [f1]
+Stateless.onChange(f2); // => [f1, f2]
+Stateless.off(f1);      // => [f2]
+Stateless.clear();      // => []
 ```
