@@ -29,15 +29,15 @@ Stateless.replace('2') // #2, modifies entry
 Skipping a hash:
 
 ```js
-Stateless.skip('1'); // '1' pushed into set
-Stateless.push('1'); // #1, Handlers not fired, '1' removed
+Stateless.skip('1')    // '1' pushed into set
+Stateless.push('1')    // #1, Handlers not fired, '1' removed
 ```
 
 Manipulating the handlers:
 
 ```js
-Stateless.onChange(f1); // => [f1]
-Stateless.onChange(f2); // => [f1, f2]
-Stateless.off(f1);      // => [f2]
-Stateless.clear();      // => []
+Stateless.onChange(f1) // => [f1]
+Stateless.onChange(f2) // => [f1, f2]
+Stateless.off(f1)      // => [f2]
+Stateless.clear()      // => []
 ```
