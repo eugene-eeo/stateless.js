@@ -1,10 +1,6 @@
 /* global Stateless,it,afterEach,describe */
 
-window.location.hash = '#';
-
-Array.prototype.last = function() {
-  return this[this.length-1];
-};
+window.location.replace('#');
 
 var assert = function(k) {
   if (!k) {
@@ -14,9 +10,6 @@ var assert = function(k) {
 
 afterEach(function() {
   Stateless.clear();
-  afterEach(function() {
-    Stateless.clear();
-  });
 });
 
 
@@ -30,40 +23,31 @@ describe('Stateless#push()', function() {
   });
 
   it('should change the hash', function() {
-    assert(window.location.hash === '#def');
+    assert(location.hash === '#def');
   });
 });
 
 
 describe('Stateless#pull()', function() {
-  var assertion = function() {
-    it('should fire the handlers', function(done) {
-      Stateless.onChange(function() {
-        done();
-      });
-      Stateless.pull();
+  it('should fire the handlers', function(done) {
+    Stateless.onChange(function() {
+      done();
     });
-  };
-  describe('the state is unidentical', function() {
-    window.location.hash = '#change';
-    assertion();
+    Stateless.pull();
   });
-  describe('the state is identical', assertion);
 });
 
 
 describe('Stateless#skip()', function(done) {
   it('skips identical hashes', function(done) {
-    var stack = [];
     Stateless.onChange(function(frag) {
-      stack.push(frag);
+      assert(false);
     });
     Stateless.skip('abc');
     Stateless.push('abc');
     setTimeout(function() {
-      assert(stack.last() !== 'abc');
       done();
-    }, 20);
+    }, 10);
   });
   it('processes unidentical hash', function(done) {
     Stateless.onChange(function() {
@@ -77,13 +61,12 @@ describe('Stateless#skip()', function(done) {
 
 describe('Stateless#off', function() {
   it('stops the handler from being fired', function(done) {
-    var stack = [];
     var handler = function(frag) {
-      stack.push(frag);
+      assert(false);
     };
+    Stateless.onChange(handler);
     Stateless.off(handler);
     Stateless.onChange(function() {
-      assert(stack.last() !== 'ghi');
       done();
     });
     Stateless.push('ghi');
@@ -101,16 +84,14 @@ describe('Stateless#off', function() {
 
 describe('Stateless#clear', function() {
   it('clears all handlers', function(done) {
-    var stack = [];
     Stateless.onChange(function(frag) {
-      stack.push(frag);
+      assert(false);
     });
     Stateless.clear();
     Stateless.push('jkl');
     setTimeout(function() {
-      assert(stack.last() !== 'jkl');
       done();
-    }, 20);
+    }, 10);
   });
 });
 
@@ -118,10 +99,10 @@ describe('Stateless#clear', function() {
 describe('Stateless#replace', function() {
   it("doesn't modify the history", function(done) {
     Stateless.onChange(function() {
-      assert(window.history.length === prevLength);
+      assert(history.length === prevLength);
       done();
     });
-    var prevLength = window.history.length;
+    var prevLength = history.length;
     Stateless.replace('chr1');
   });
   it('replaces the hash fragment', function(done) {
