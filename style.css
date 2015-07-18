@@ -7,9 +7,6 @@ body {
 p {
   margin: 0;
 }
-.aligned {
-  dislay: block;
-}
 .left {
   float: left;
   width: 20%;
