@@ -7,8 +7,8 @@
 
 (function(global){
   'use strict';
+  var skipped = {};
   var handlers = [];
-  var previous = {};
   var hashRegex = /#(.*)$/;
 
   var fireHandlers = function(state) {
@@ -54,7 +54,7 @@
    * handlers will be fired.
    */
   var skip = function(state) {
-    previous[state] = 1;
+    skipped[state] = 1;
   };
 
   /* 
@@ -85,8 +85,8 @@
 
   window.addEventListener('hashchange', function() {
     var state = getState();
-    if (previous[state])
-      delete previous[state];
+    if (skipped[state])
+      delete skipped[state];
     else
       fireHandlers(state);
   });
