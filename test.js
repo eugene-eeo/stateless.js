@@ -29,11 +29,14 @@ describe('Stateless#push', function() {
 
 
 describe('Stateless#pull', function() {
-  it('should fire the handlers', function(done) {
+  it('should fire the handlers synchronously', function() {
+    var stack = [];
     Stateless.onChange(function() {
-      done();
+      stack.push(1);
     });
     Stateless.pull();
+    Stateless.pull();
+    assert(stack.length === 2);
   });
 });
 
@@ -105,11 +108,15 @@ describe('Stateless#replace', function() {
     var prevLength = history.length;
     Stateless.replace('chr1');
   });
-  it('replaces the hash fragment', function(done) {
+  it('fires the handlers', function(done) {
     Stateless.onChange(function(frag) {
       assert(frag === 'chr2');
       done();
     });
     Stateless.replace('chr2');
+  });
+  it('replaces the hash', function() {
+    Stateless.replace('chr3');
+    assert(location.hash === '#chr3');
   });
 });
