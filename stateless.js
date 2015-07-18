@@ -5,7 +5,7 @@
  */
 
 
-(function(global){
+var Stateless = (function(){
   'use strict';
   var skipped = {};
   var handlers = [];
@@ -91,7 +91,7 @@
       fireHandlers(state);
   });
 
-  global.Stateless = {
+  return {
     off: off,
     push: push,
     pull: pull,
@@ -100,4 +100,4 @@
     onChange: onChange,
     clear: clear,
   };
-})(this);
+})();

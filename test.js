@@ -13,7 +13,7 @@ afterEach(function() {
 });
 
 
-describe('Stateless#push()', function() {
+describe('Stateless#push', function() {
   it('should fire the handlers', function(done) {
     Stateless.onChange(function(fragment) {
       assert(fragment === 'def');
@@ -28,7 +28,7 @@ describe('Stateless#push()', function() {
 });
 
 
-describe('Stateless#pull()', function() {
+describe('Stateless#pull', function() {
   it('should fire the handlers', function(done) {
     Stateless.onChange(function() {
       done();
@@ -38,7 +38,7 @@ describe('Stateless#pull()', function() {
 });
 
 
-describe('Stateless#skip()', function(done) {
+describe('Stateless#skip', function(done) {
   it('skips identical hashes', function(done) {
     Stateless.onChange(function(frag) {
       assert(false);
@@ -47,7 +47,7 @@ describe('Stateless#skip()', function(done) {
     Stateless.push('abc');
     setTimeout(function() {
       done();
-    }, 10);
+    }, 0);
   });
   it('processes unidentical hash', function(done) {
     Stateless.onChange(function() {
@@ -91,7 +91,7 @@ describe('Stateless#clear', function() {
     Stateless.push('jkl');
     setTimeout(function() {
       done();
-    }, 10);
+    }, 0);
   });
 });
 
