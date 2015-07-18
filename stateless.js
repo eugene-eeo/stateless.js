@@ -36,9 +36,8 @@ var Stateless = (function(){
    */
   var off = function(handler) {
     var idx = handlers.indexOf(handler);
-    if (idx !== -1) {
+    if (idx !== -1)
       handlers.splice(idx, 1);
-    }
   };
 
   /*
