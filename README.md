@@ -22,6 +22,7 @@ simple API.
 Manipulating the browser hash:
 
 ```js
+Stateless.pull()       // fires handlers
 Stateless.push('1')    // #1, new history entry
 Stateless.replace('2') // #2, modifies entry
 ```
