@@ -23,7 +23,7 @@ describe('Stateless#push', function() {
   });
 
   it('should change the hash', function() {
-    assert(location.hash === '#def');
+    assert(window.location.hash === '#def');
   });
 });
 
@@ -102,7 +102,7 @@ describe('Stateless#clear', function() {
 describe('Stateless#replace', function() {
   it("doesn't modify the history", function(done) {
     Stateless.onChange(function() {
-      assert(history.length === prevLength);
+      assert(window.history.length === prevLength);
       done();
     });
     var prevLength = history.length;
@@ -117,6 +117,6 @@ describe('Stateless#replace', function() {
   });
   it('replaces the hash', function() {
     Stateless.replace('chr3');
-    assert(location.hash === '#chr3');
+    assert(window.location.hash === '#chr3');
   });
 });
