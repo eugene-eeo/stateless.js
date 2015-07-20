@@ -1,12 +1,7 @@
-/* global Stateless,it,afterEach,describe */
+/* global Stateless,it,afterEach,describe,assert */
 
 window.location.replace('#');
 
-var assert = function(k) {
-  if (!k) {
-    throw new Error('falsy!');
-  }
-};
 
 afterEach(function() {
   Stateless.clear();
