@@ -20,7 +20,8 @@ var Stateless = (function(){
   var getState = function() {
     // Workaround for Firefox which automatically
     // decodes the hash fragment [bug:483304]
-    return (hashRegex.exec(window.location.href) || '')[1];
+    var hash = hashRegex.exec(window.location.href);
+    return hash ? hash[1] : '';
   };
 
   /*
