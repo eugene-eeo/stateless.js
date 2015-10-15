@@ -54,7 +54,7 @@ var Stateless = (function(){
    * handlers will be fired.
    */
   var skip = function(state) {
-    skipped[state] = 1;
+    skipped[state] = true;
   };
 
   /* 
