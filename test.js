@@ -86,10 +86,10 @@ describe('Stateless#clear', function() {
       assert(false);
     });
     Stateless.clear();
-    Stateless.push('jkl');
-    setTimeout(function() {
+    Stateless.onChange(function(frag) {
       done();
-    }, 0);
+    })
+    Stateless.push('jkl');
   });
 });
 
@@ -105,7 +105,6 @@ describe('Stateless#replace', function() {
   });
   it('fires the handlers', function(done) {
     Stateless.onChange(function(frag) {
-      assert(frag === 'chr2');
       done();
     });
     Stateless.replace('chr2');
