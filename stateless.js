@@ -12,7 +12,7 @@ var Stateless = (function(){
   var hashRegex = /#(.*)$/;
 
   var fire = function(state) {
-    for (var i=0; i < handlers.length; i++) {
+    for (var i = 0; i < handlers.length; i++) {
       handlers[i](state);
     }
   };
