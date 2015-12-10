@@ -39,8 +39,8 @@ var Stateless = (function(){
     onChange: function(fn) { handlers.push(fn); },
 
     // Firing
-    pull:     function() { fire(getState()); },
-    push:     function(state) { window.location.hash = '#' + state; },
-    replace:  function(state) { window.location.replace('#' + state); },
+    pull:    function() { fire(getState()); },
+    push:    function(state) { window.location.hash = '#' + state; },
+    replace: function(state) { window.location.replace('#' + state); },
   };
 })();
