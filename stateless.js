@@ -40,7 +40,7 @@ var Stateless = (function(){
 
     // Firing
     pull:    function() { fire(getState()); },
-    push:    function(state) { window.location.hash = '#' + state; },
-    replace: function(state) { window.location.replace('#' + state); },
+    push:    function(s) { window.location.hash = '#' + s; },
+    replace: function(s) { window.location.replace('#' + s); },
   };
 })();
