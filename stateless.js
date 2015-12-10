@@ -1,10 +1,3 @@
-/*
- * stateless.js
- *
- * Licensed under the MIT License.
- */
-
-
 var Stateless = (function(){
   'use strict';
   var skipped = {};
