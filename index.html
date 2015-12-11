@@ -1,39 +1,90 @@
 <html>
 <head>
+  <title>Stateless.js</title>
   <meta charset="utf-8"/>
   <meta name=viewport content="width=device-width, initial-scale=1"/>
-  <link rel="icon" type="image/png" href="icon.png"/>
-  <link rel="stylesheet" href="style.css"/>
-  <title>Stateless.js</title>
+  <link rel="icon" type="image/png" href="icon.png"/>  
+  <style>
+body {
+  width: 25em;
+  font-size: 20px;
+  font-family: 'Helvetica Neue', sans-serif;
+  margin: 3em auto;
+  color: #000;
+  text-align: center;
+  background-color: #F7F3E8;
+}
+h1 {
+  margin: 0 0.5em;
+  font-weight: normal;
+  font-family: Georgia, serif;
+  color: #242E35;
+}
+pre {
+  text-align: left;
+  overflow: auto;
+  padding: 0.5em;
+  font-family: 'Consolas', monospace;
+  color: #D5E1DD;
+  background-color: #242E35;
+}
+img {
+  display: block;
+  margin: 0.5em auto;
+}
+a {
+  color: #F7F3E8;
+  font-weight: bold;
+  display: inline-block;
+  background-color: #242E35;
+  padding: calc(0.5em - 2px);
+  text-decoration: none;
+  min-width: 6em;
+  border: 2px solid #000;
+  border-radius: 0.4em;
+  margin: 0.6em 0;
+}
+a:hover {
+  background-color: #2B3E42; 
+  color: #EEE;
+}
+@media only screen and (max-device-width: 480px) {
+  body {
+    width: inherit;
+    font-size: 18px;
+    margin: 1.5em 1em;
+  }
+  #links {
+    margin: 1.5em auto;
+  }
+  a {
+    border-radius: 0;
+    display: block;
+    width: calc(100% - 5em);
+    margin: 0.5em auto;
+  }
+}
+  </style>
 </head>
 <body>
-  <div class="left">
-    <center>
-    <img src="https://cdn.rawgit.com/eugene-eeo/stateless.js/gh-pages/small.svg"/>
+
+  <img src='small.svg'/>
+  <h1>Stateless.js</h1>
+  <p>
+  Simple cross-browser context persistence library à la pushState.
+  For storing and recovering state in the URL.
+  </p>
+
+  <pre>Stateless.onChange((str) =&gt; {
+  console.log(str);
+});
+Stateless.pull();</pre>
+
+  <div id='links'>
     <a href="https://github.com/eugene-eeo/stateless.js">Github</a>
     <a href="https://github.com/eugene-eeo/stateless.js/releases/latest">Download</a>
     <a href="test.html">Tests</a>
-    <a href='demo.html'>Demo</a>
-    </center>
   </div>
-  <div class="right">
-    <h1>Stateless.js</h1>
-    <p>
-    Simple cross-browser context persistence library à la
-    <code>pushState</code>, via changing the hash fragment.
-    Mainly meant for <strike>freeloading</strike> serverless
-    web services which need to store some state in the URL.
-    </p>
-    <pre>Stateless.onChange(function(fragment) {
-  console.log(fragment);
-});
-Stateless.pull();</pre>
-    <h3>Features</h3>
-    <ul>
-      <li>Prevents consecutive processing of identical hashes</li>
-      <li>Ability to mark hashes as processed</li>
-      <li>Asynchronous handlers</li>
-    </ul>
-  </div>
+
 </body>
 </html>
