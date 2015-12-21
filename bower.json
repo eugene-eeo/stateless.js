@@ -1,0 +1,28 @@
+{
+  "name": "stateless.js",
+  "main": "stateless.js",
+  "homepage": "https://github.com/eugene-eeo/stateless.js",
+  "authors": [
+    "Eeo Jun <packwolf58@gmail.com>"
+  ],
+  "description": "simpler pushstate",
+  "moduleType": [],
+  "keywords": [
+    "hashchange",
+    "hash",
+    "stateless"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "media"
+  ],
+  "devDependencies": {
+    "assert.js": "eugene-eeo/assert.js#~0.1.1",
+    "mocha": "~2.3.4"
+  }
+}
