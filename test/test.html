@@ -2,15 +2,15 @@
 <head>
   <meta charset="utf-8">
   <title>Mocha Tests</title>
-  <link href="mocha/mocha.min.css" rel="stylesheet" />
+  <link href="../bower_components/mocha/mocha.css" rel="stylesheet" />
 </head>
 <body>
   <div id="mocha"></div>
-  <script src="mocha/mocha.min.js"></script>
-  <script src="mocha/assert.min.js"></script>
+  <script src="../bower_components/mocha/mocha.js"></script>
+  <script src="../bower_components/assert.js/assert.js"></script>
 
   <script>mocha.setup('bdd')</script>
-  <script src="stateless.js"></script>
+  <script src="../stateless.js"></script>
   <script src="test.js"></script>
   <script>
     if (window.mochaPhantomJS) {
