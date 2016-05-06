@@ -42,3 +42,9 @@ Stateless.onChange(f2) // => [f1, f2]
 Stateless.off(f1)      // => [f2]
 Stateless.clear()      // => []
 ```
+
+No global instances:
+
+```js
+var stateless = Stateless.wrap(window); // your own instance
+```
