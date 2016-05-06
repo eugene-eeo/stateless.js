@@ -3,17 +3,19 @@
   <meta charset="utf-8">
   <title>Mocha Tests</title>
   <link rel="icon" href="icon.png"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.4.5/mocha.min.css" />
 </head>
 <body>
   <div id="mocha"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.4.5/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js"></script>
 
+  <script>assert = chai.assert</script>
   <script>mocha.setup('bdd')</script>
-  <script type="text/javascript" src="https://github.com/eugene-eeo/stateless.js/releases/download/0.1.2/stateless.min.js"></script>
-  <script type="text/javascript" src="https://cdn.rawgit.com/eugene-eeo/stateless.js/0.1.1/test.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/eugene-eeo/stateless.js/0.1.3/stateless.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/eugene-eeo/stateless.js/0.1.3/test/windowmock.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/eugene-eeo/stateless.js/0.1.3/test/test.js"></script>
   <script>
-    mocha.checkLeaks();
     mocha.run();
   </script>
 </body>

@@ -6,85 +6,40 @@
   <link rel="icon" type="image/png" href="icon.png"/>  
   <style>
 body {
-  width: 25em;
-  font-size: 20px;
-  font-family: 'Helvetica Neue', sans-serif;
-  margin: 3em auto;
-  color: #000;
-  text-align: center;
-  background-color: #F7F3E8;
-}
-h1 {
-  margin: 0 0.5em;
-  font-weight: normal;
   font-family: Georgia, serif;
-  color: #242E35;
+  max-width: 23em;
+  padding: 0 1em;
+  margin: 3em auto;
+  font-size: 20px;
+  text-align: center;
 }
 pre {
-  text-align: left;
-  overflow: auto;
+  background-color: #F1F1F1;
   padding: 0.5em;
-  font-family: 'Consolas', monospace;
-  color: #D5E1DD;
-  background-color: #242E35;
+}
+code {
+  font-family: Consolas, Monaco, monospace;
 }
 img {
-  display: block;
-  margin: 0.5em auto;
-}
-a {
-  color: #F7F3E8;
-  font-weight: bold;
-  display: inline-block;
-  background-color: #242E35;
-  padding: calc(0.5em - 2px);
-  text-decoration: none;
-  min-width: 6em;
-  border: 2px solid #000;
-  border-radius: 0.4em;
-  margin: 0.6em 0;
-}
-a:hover {
-  background-color: #2B3E42; 
-  color: #EEE;
-}
-@media only screen and (max-device-width: 480px) {
-  body {
-    width: inherit;
-    font-size: 18px;
-    margin: 1.5em 1em;
-  }
-  #links {
-    margin: 1.5em auto;
-  }
-  a {
-    border-radius: 0;
-    display: block;
-    width: calc(100% - 5em);
-    margin: 0.5em auto;
-  }
+  width: 1.4em;
+  vertical-align: middle;
+  margin: 0 0.1em 0 0;
 }
   </style>
 </head>
 <body>
 
-  <img src='small.svg'/>
-  <h1>Stateless.js</h1>
+  <h1><img src='small.svg'/> Stateless.js</h1>
   <p>
-  Simple cross-browser context persistence library à la pushState.
-  For storing and recovering state in the URL.
+    A simpler <code>pushState</code> for storing and recovering
+    state from the URL with a super simple API.
   </p>
+  <pre><code>Stateless.push('hash');</code></pre>
 
-  <pre>Stateless.onChange((str) =&gt; {
-  console.log(str);
-});
-Stateless.pull();</pre>
-
-  <div id='links'>
-    <a href="https://github.com/eugene-eeo/stateless.js">Github</a>
-    <a href="https://github.com/eugene-eeo/stateless.js/releases/latest">Download</a>
-    <a href="test.html">Tests</a>
-  </div>
+  Vist the <a href="https://github.com/eugene-eeo/stateless.js">Github</a>
+  repo, <a href="https://github.com/eugene-eeo/stateless.js/releases/latest">download</a>
+  the latest version or run the <a href="test.html">test suite</a>
+  yourself.
 
 </body>
 </html>
