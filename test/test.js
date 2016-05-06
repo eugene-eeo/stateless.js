@@ -1,116 +1,129 @@
-/* global Stateless,it,afterEach,describe,assert */
+describe('Stateless', function() {
+  it('adds a new event handler', function() {
+    var mock = new Mock();
+    var wrap = Stateless.wrap(mock);
+    assert(mock.handlers.hashchange);
+  });
 
-window.location.replace('#');
-
-
-afterEach(function() {
-  Stateless.clear();
-});
-
-
-describe('Stateless#push', function() {
-  it('should fire the handlers', function(done) {
-    Stateless.onChange(function(fragment) {
-      assert(fragment === 'def');
-      done();
+  describe('.onChange', function() {
+    var mock = new Mock();
+    var wrap = Stateless.wrap(mock);
+    var hash, called;
+    wrap.onChange(function(h) {
+      hash = h;
+      called = true;
     });
-    Stateless.push('def');
-  });
 
-  it('should change the hash', function() {
-    assert(window.location.hash === '#def');
-  });
-});
-
-
-describe('Stateless#pull', function() {
-  it('should fire the handlers synchronously', function() {
-    var stack = [];
-    Stateless.onChange(function() {
-      stack.push(1);
+    it('handlers are fired when location changes', function() {
+      mock.location.hash = '#def';
+      assert(called);
     });
-    Stateless.pull();
-    Stateless.pull();
-    assert(stack.length === 2);
-  });
-});
 
-
-describe('Stateless#skip', function(done) {
-  it('skips identical hashes', function(done) {
-    Stateless.onChange(function(frag) {
-      assert(false);
+    it('fires handlers with correct state', function() {
+      assert.equal(hash, 'def');
     });
-    Stateless.skip('abc');
-    Stateless.push('abc');
-    setTimeout(function() {
-      done();
-    }, 0);
   });
-  it('processes unidentical hash', function(done) {
-    Stateless.onChange(function() {
-      done();
+
+  describe('.push', function() {
+    var mock = new Mock();
+    var wrap = Stateless.wrap(mock);
+
+    it('sets the current location to the value', function() {
+      wrap.push('abc');
+      assert.equal(mock.location.href, '#abc');
     });
-    Stateless.skip('abc');
-    Stateless.push('def');
+
+    it('adds a new history entry', function() {
+      assert.deepEqual(mock.history, ['#abc']);
+    });
   });
-});
 
+  describe('.pull', function() {
+    var mock = new Mock();
+    var wrap = Stateless.wrap(mock);
+    var hash;
+    wrap.onChange(function(h) { hash = h; });
 
-describe('Stateless#off', function() {
-  it('stops the handler from being fired', function(done) {
-    var handler = function(frag) {
-      assert(false);
+    it('fires the handlers', function() {
+      mock.location.hash = '#def';
+      wrap.pull();
+      assert.equal(hash, 'def');
+    });
+  });
+
+  describe('.replace', function() {
+    var mock = new Mock();
+    var wrap = Stateless.wrap(mock);
+    mock.location.hash = '#abc';
+
+    it('replaces the hash', function() {
+      wrap.replace('def');
+      assert.equal(mock.location.hash, 'def');
+    });
+
+    it('does not add another history entry', function() {
+      assert.deepEqual(mock.history, ['#def']);
+    });
+  });
+
+  describe('.skip', function() {
+    var mock = new Mock();
+    var wrap = Stateless.wrap(mock);
+    mock.location.hash = '#abc';
+    var called;
+    wrap.onChange(function(h) { called = true; });
+
+    it('skips the same hash', function() {
+      wrap.skip('def');
+      wrap.push('def');
+      assert(!called);
+    });
+
+    it('allows changes to be made to window.location', function() {
+      assert.deepEqual(mock.history, ['#abc', '#def']);
+    });
+
+    it('only skips once', function() {
+      wrap.push('def');
+      assert(called);
+    });
+  });
+
+  describe('.clear', function() {
+    var mock = new Mock();
+    var wrap = Stateless.wrap(mock);
+    var called;
+    wrap.onChange(function(h) {
+      called = true;
+    });
+
+    it('clears the handlers', function() {
+      wrap.clear();
+      wrap.push('def');
+      assert(!called);
+      mock.location.hash = '#abc';
+      assert(!called);
+      wrap.pull();
+      assert(!called);
+    });
+  });
+
+  describe('.off', function() {
+    var mock = new Mock();
+    var wrap = Stateless.wrap(mock);
+    var fn = function(h) {
+      fn.called = true;
     };
-    Stateless.onChange(handler);
-    Stateless.off(handler);
-    Stateless.onChange(function() {
-      done();
-    });
-    Stateless.push('ghi');
-  });
+    wrap.onChange(fn);
 
-  it('does nothing if the handler is not found', function(done) {
-    Stateless.onChange(function() {
-      done();
+    it('removes a specific handler', function() {
+      wrap.off(fn);
+      wrap.push('def');
+      assert(!fn.called);
+      mock.location.hash = '#def';
+      assert(!fn.called);
+      wrap.pull();
+      assert(!fn.called);
     });
-    Stateless.off(undefined);
-    Stateless.push('bas');
-  });
-});
-
-
-describe('Stateless#clear', function() {
-  it('clears all handlers', function(done) {
-    Stateless.onChange(function(frag) {
-      assert(false);
-    });
-    Stateless.clear();
-    Stateless.onChange(function(frag) {
-      done();
-    })
-    Stateless.push('jkl');
-  });
-});
-
-
-describe('Stateless#replace', function() {
-  it("doesn't modify the history", function(done) {
-    Stateless.onChange(function() {
-      assert(window.history.length === prevLength);
-      done();
-    });
-    var prevLength = history.length;
-    Stateless.replace('chr1');
-  });
-  it('fires the handlers', function(done) {
-    Stateless.onChange(function(frag) {
-      done();
-    });
-    Stateless.replace('chr2');
-  });
-  it('replaces the hash', function() {
-    Stateless.replace('chr3');
-    assert(window.location.hash === '#chr3');
   });
 });
