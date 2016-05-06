@@ -1,4 +1,4 @@
-var Stateless = (function(){
+var Stateless = (function(window){
   'use strict';
   var skipped = {};
   var handlers = [];
@@ -43,4 +43,4 @@ var Stateless = (function(){
     push:    function(s) { window.location.hash = '#' + s; },
     replace: function(s) { window.location.replace('#' + s); },
   };
-})();
+})(window);
