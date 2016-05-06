@@ -28,7 +28,7 @@ var Stateless = (function(window){
     if (skipped[state])
       delete skipped[state];
     else
-      Stateless.pull();
+      fire(getState());
   });
 
   return {
