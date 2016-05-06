@@ -23,7 +23,7 @@
       if (skipped[state])
         delete skipped[state];
       else
-        fire(getState());
+        fire(state);
     });
 
     return {

@@ -7,17 +7,15 @@
 <body>
   <div id="mocha"></div>
   <script src="../bower_components/mocha/mocha.js"></script>
-  <script src="../bower_components/assert.js/assert.js"></script>
+  <script src="../bower_components/chai/chai.js"></script>
 
+  <script>assert = chai.assert</script>
   <script>mocha.setup('bdd')</script>
   <script src="../stateless.js"></script>
+  <script src="windowmock.js"></script>
   <script src="test.js"></script>
   <script>
-    if (window.mochaPhantomJS) {
-      mochaPhantomJS.run();
-    } else {
-      mocha.run();
-    }
+    mocha.run();
   </script>
 </body>
 </html>
